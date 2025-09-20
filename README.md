@@ -14,9 +14,8 @@ This is a simple splunk app that redact fields bases on pattern reconaisance:
 
 Select the fields to be redacted:
 ```splunk
-index="*" 
-| table AdresseIP, email, username, hostname
-| redact fields="AdresseIP, email, username, hostname"
+host="redactor"
+| redact fields="URL, Destination_IP, Domain, Email, Full_Name, Source_IP, Telephone"
 ```
 
 The result should look like
@@ -41,7 +40,7 @@ pip3 install --target=./lib -r requirements.txt
 
 ### Command.conf
 In `/opt/splunk/etc/apps/<app name>/default`
-```toml
+```
 [redact]
 python.version = python3
 chunked = true
